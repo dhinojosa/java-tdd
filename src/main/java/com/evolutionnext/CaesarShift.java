@@ -20,6 +20,7 @@ public class CaesarShift {
      */
 
     private char encryptChar(char chr) {
+        if ((chr < 'A' || chr > 'Z') && (chr < 'a' || chr > 'z')) return chr;
         char temp = (char) (chr + shift);
         return (temp > 'z' || (temp > 'Z' && temp < 'a')) ? (char) (temp - 26) : temp;
     }

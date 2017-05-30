@@ -89,5 +89,10 @@ public class CaesarShiftTest {
         caesarShift.encrypt(null);
     }
 
+    @Test
+    public void testASpecialCharOfAtWithShiftOf4() {
+        CaesarShift caesarShift = new CaesarShift(4);
+        assertThat(caesarShift.encrypt("@")).isEqualTo("@");
+    }
 
 }
