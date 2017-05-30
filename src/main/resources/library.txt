@@ -14,3 +14,4 @@ Judy Hirsch~Crime and Punishment~2015-11-19
 Jim Czenkusch~Warlock inspite of itself~2016-04-30
 Amit Sharma~Effective Java~2016-05-31
 Lloyd Moore~Paradise Lost~2016-01-10
+Natalia Maciejowska~Solaris~2017-05-30
