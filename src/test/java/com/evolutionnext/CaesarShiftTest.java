@@ -2,8 +2,12 @@ package com.evolutionnext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class CaesarShiftTest {
    @Test
@@ -62,4 +66,28 @@ public class CaesarShiftTest {
         CaesarShift caesarShift = new CaesarShift(1);
         assertThat(caesarShift.encrypt("Z")).isEqualTo("A");
     }
+
+    @Test
+    public void testANullEncryptSomewhatModernWay() {
+       try {
+           CaesarShift caesarShift = new CaesarShift(1);
+           caesarShift.encrypt(null);
+           fail();
+       } catch (NullPointerException npe) {
+           assertThat(npe.getMessage()).isEqualTo("String cannot be null");
+       }
+    }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void testANullWithJunit5Rule() {
+        thrown.expect(NullPointerException.class);
+        thrown.expectMessage("String cannot be null");
+        CaesarShift caesarShift = new CaesarShift(1);
+        caesarShift.encrypt(null);
+    }
+
+
 }
