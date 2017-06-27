@@ -163,12 +163,13 @@ public class CaesarShiftTest {
         assertThat(cs.decode("a")).isEqualTo("z");
     }
 
-
     @Test
-    public void test4001() {
-
-
+    public void testDecodeWith26() {
+        CaesarShift cs = new CaesarShift(26);
+        assertThat(cs.decode("z")).isEqualTo("z");
     }
+
+
     //Maybe not enough for ñ
 
 }
