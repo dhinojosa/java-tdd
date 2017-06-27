@@ -28,7 +28,7 @@ public class DieTest {
         //Inversion of Control
         //Dependency Injection
         JavaUtilRandomDie die = new JavaUtilRandomDie(random);
-        JavaUtilRandomDie copy = die.roll();
+        Die copy = die.roll();
         assertThat(copy.getPips()).isEqualTo(4);
     }
 
@@ -43,7 +43,7 @@ public class DieTest {
             }
         };
         JavaUtilRandomDie die = new JavaUtilRandomDie(random);
-        JavaUtilRandomDie copy = die.roll();
+        Die copy = die.roll();
         assertThat(copy.getPips()).isEqualTo(5);
     }
 
@@ -61,7 +61,7 @@ public class DieTest {
 
         //do my test
         JavaUtilRandomDie die = new JavaUtilRandomDie(random);
-        JavaUtilRandomDie copy = die.roll().roll();
+        Die copy = die.roll().roll();
         assertThat(copy.getPips()).isEqualTo(5);
 
         //verify
@@ -91,7 +91,7 @@ public class DieTest {
 
         //do my test
         JavaUtilRandomDie die = new JavaUtilRandomDie(random);
-        JavaUtilRandomDie copy = die.roll();
+        Die copy = die.roll();
         assertThat(copy.getPips()).isGreaterThan(0).isLessThan(7);
 
         //verify
@@ -109,8 +109,8 @@ public class DieTest {
         replay(random);
 
         //do my test
-        JavaUtilRandomDie die = new JavaUtilRandomDie(random);
-        JavaUtilRandomDie copy = die.roll();
+        Die die = new JavaUtilRandomDie(random);
+        Die copy = die.roll();
         assertThat(copy.getPips()).isGreaterThan(0).isLessThan(7);
 
         //verify

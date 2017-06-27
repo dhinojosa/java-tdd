@@ -47,7 +47,7 @@
               <artifactId>maven-surefire-plugin</artifactId>
               <version>2.19.1</version>
               <configuration>
-                  <groups>com.xyzcorp.tdd.UnitTest</groups>
+                  <groups>com.xyzcorp.UnitTest</groups>
               </configuration>
           </plugin>
          <plugin>
