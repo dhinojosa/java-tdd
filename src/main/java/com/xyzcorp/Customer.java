@@ -24,7 +24,8 @@ public class Customer {
 	public long getPenalty(LocalDate todaysDate) {
 		long monthsBetween = MONTHS.between(checkoutDate, todaysDate);
 		if (monthsBetween == 1 && 
-				checkoutDate.getDayOfMonth() == todaysDate.getDayOfMonth()) return 0;
+				checkoutDate.getDayOfMonth() == 
+				todaysDate.getDayOfMonth()) return 0;
 		return MONTHS.between(checkoutDate, todaysDate) * 10;
 	}
 
