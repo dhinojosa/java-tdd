@@ -1,12 +1,14 @@
 package com.xyzcorp;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Category(value=UnitTest.class)
 public class PenaltyCalculatorTest {
 
     @Test

@@ -1,22 +1,16 @@
 package com.xyzcorp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@Category(value=UnitTest.class)
 public class BookLendingParserTest {
 
     @Test
