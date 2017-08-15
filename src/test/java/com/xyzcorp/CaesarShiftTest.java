@@ -59,7 +59,8 @@ public class CaesarShiftTest {
 	@Test
 	public void testEncodeWithANullUsingAssertJFunction() {
 		CaesarShift cs = new CaesarShift(1);
-		assertThatThrownBy(() -> cs.encode(null)).isInstanceOf(NullPointerException.class)
+		assertThatThrownBy(() -> cs.encode(null))
+				.isInstanceOf(NullPointerException.class)
 				.hasMessage(CaesarShift.STRING_CANNOT_BE_NULL);
 	}
 
@@ -148,6 +149,4 @@ public class CaesarShiftTest {
 		CaesarShift cs = new CaesarShift(1);
 		assertThat(cs.decode(cs.encode("Hello World!"))).isEqualTo("Hello World!");
 	}
-
-	// do we want to encode numbers, for now no, but we can
 }
