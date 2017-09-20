@@ -38,4 +38,8 @@ public class CaesarShift {
         char baseChar = Character.isUpperCase(c) ? 'A' : 'a';
         return ((char) ((c - baseChar + count) % ALPHA_SIZE + baseChar));
     }
+
+    public static String decode(String s, int count) {
+        return encodeUsingStreams(s, -count);
+    }
 }

@@ -110,5 +110,24 @@ public class CaesarShiftTest {
                               .isEqualTo("Ifmmp, Xpsme!");
     }
 
+    @Test
+    public void testDecodeWithEmptyStringAnd0() {
+        assertThat(CaesarShift.decode("", 0)).isEqualTo("");
+    }
 
+    @Test
+    public void testDecodeWithNonEmptyStringAnd0() {
+        assertThat(CaesarShift.decode("a", 0)).isEqualTo("a");
+    }
+
+    @Test
+    public void testDecodeWithStringOfFAnd1() {
+        assertThat(CaesarShift.decode("f", 1)).isEqualTo("e");
+    }
+
+    //Difficulty LEVEL 12!
+    @Test
+    public void testDecodeWithStringOfAAnd1() {
+        assertThat(CaesarShift.decode("a", 1)).isEqualTo("z");
+    }
 }
