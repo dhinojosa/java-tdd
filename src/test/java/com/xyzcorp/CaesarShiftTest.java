@@ -130,4 +130,15 @@ public class CaesarShiftTest {
     public void testDecodeWithStringOfAAnd1() {
         assertThat(CaesarShift.decode("a", 1)).isEqualTo("z");
     }
+
+    @Test
+    public void testDecodeWithStringOfAAnd26Times4Plus1() {
+        assertThat(CaesarShift.decode("a", (26 * 4) + 1)).isEqualTo("z");
+    }
+
+
+    @Test
+    public void testEncodeStringWithAsianCharacter() {
+        assertThat(CaesarShift.decode("a", (26 * 4) + 1)).isEqualTo("z");
+    }
 }
