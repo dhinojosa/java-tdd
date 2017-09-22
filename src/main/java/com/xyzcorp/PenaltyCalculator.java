@@ -12,6 +12,7 @@ public class PenaltyCalculator {
     }
 
     public double calculate(LocalDate checkoutDate) {
+        if (checkoutDate.equals(currentDateSupplier.get())) return 0.0;
         if (checkoutDate.isAfter(currentDateSupplier.get()))
             throw new IllegalArgumentException
                     ("Checkout date must be before todays date");
