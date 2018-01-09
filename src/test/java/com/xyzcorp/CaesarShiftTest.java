@@ -81,6 +81,15 @@ public class CaesarShiftTest {
                 .hasMessage("String is null");
 	}
 
+	//String longer than one character.
+
+	@Test
+	public void testEncodeWithABWithAShift1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("ab")).isEqualTo("bc");
+	}
+
+
 	// Write a lot of tests
 	// Small functions specific, signatures change (!)
 }
