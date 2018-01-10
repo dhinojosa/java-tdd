@@ -1,4 +1,7 @@
 package com.xyzcorp;
 
-public class Die {
+public interface Die {
+    int getPips();
+
+    Die roll();
 }

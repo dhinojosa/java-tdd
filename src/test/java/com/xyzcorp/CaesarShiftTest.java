@@ -69,7 +69,7 @@ public class CaesarShiftTest {
                 cs.encode(null);
             }
         })
-		         .hasMessage("String cannot be null")
+		         .hasMessage("String is null")
 				.isInstanceOf(NullPointerException.class);
 	}
 
@@ -81,7 +81,24 @@ public class CaesarShiftTest {
                 .hasMessage("String is null");
 	}
 
-	//String longer than one character.
+	@Test
+	public void testEncodeWithANumberWithAShiftOf1() {
+	    CaesarShift cs = new CaesarShift(1);
+	    assertThat(cs.encode("2")).isEqualTo("2");
+	}
+
+	@Test
+	public void testEncodeWithATwoNumbersWithAShiftOf1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("25")).isEqualTo("25");
+	}
+
+	//Green Bar
+	@Test
+	public void testEncodeWithATwoStrangeCharactersWithAShiftOf1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("~1")).isEqualTo("~1");
+	}
 
 	@Test
 	public void testEncodeWithABWithAShift1() {
@@ -89,6 +106,74 @@ public class CaesarShiftTest {
 		assertThat(cs.encode("ab")).isEqualTo("bc");
 	}
 
+	@Test
+	public void testEncodeWithAZWithAShift1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("z")).isEqualTo("a");
+	}
+
+	@Test
+	public void testEncodeWithAZWithAShift27() {
+		CaesarShift cs = new CaesarShift(27);
+		assertThat(cs.encode("z")).isEqualTo("a");
+	}
+
+	@Test
+	public void testEncodeWithAZWithAShift261() {
+		CaesarShift cs = new CaesarShift(261);
+		assertThat(cs.encode("z")).isEqualTo("a");
+	}
+
+	@Test
+	public void testEncodeWithCapAAWithAShift0() {
+		CaesarShift cs = new CaesarShift(0);
+		assertThat(cs.encode("A")).isEqualTo("A");
+	}
+
+	@Test
+	public void testEncodeWithCapZWithAShift1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("Z")).isEqualTo("A");
+	}
+
+	//Green Bar
+	@Test
+	public void testEncodeWithCapZWithAShift1IgnoreCase() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.encode("Z")).isEqualToIgnoringCase("a");
+	}
+
+	//Green Bar
+	@Test
+	public void testEncodeWithNegative1() {
+		CaesarShift cs = new CaesarShift(-1);
+		assertThat(cs.encode("Z")).isEqualTo("Y");
+	}
+
+	@Test
+	public void testEncodeAWithNegative1() {
+		CaesarShift cs = new CaesarShift(-1);
+		assertThat(cs.encode("A")).isEqualTo("Z");
+	}
+
+	@Test
+	public void testEncodeAWithNegative27() {
+		CaesarShift cs = new CaesarShift(-27);
+		assertThat(cs.encode("A")).isEqualTo("Z");
+	}
+
+	@Test
+	public void testDecodeAAOf1() {
+		CaesarShift cs = new CaesarShift(1);
+		assertThat(cs.decode("A")).isEqualTo("Z");
+	}
+
+	//GreenBar
+	@Test
+	public void testEncodeHelloWorld() {
+		CaesarShift cs = new CaesarShift(5);
+		System.out.println(cs.encode("Como estás! Mundo!"));
+	}
 
 	// Write a lot of tests
 	// Small functions specific, signatures change (!)
