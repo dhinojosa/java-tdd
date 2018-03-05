@@ -30,18 +30,12 @@ public class AccountSteps {
     @Then("^the account in question should have (\\d+) dollar$")
     public void theAccountInQuestionShouldHaveDollar(int result) throws
     Throwable {
-        assertThat(accountWorld.account.getBalance()).isEqualTo(100);
+        assertThat(accountWorld.account.getBalance()).isEqualTo(result);
     }
 
-    @Given("^an account of (\\d+)$")
+    @Given("^an account of (-?\\d+)$")
     public void anAccountOf(int initialBalance) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         accountWorld.account = new Account(initialBalance);
-    }
-
-    @And("^a penalty of (\\d+)\\.$")
-    public void aPenaltyOf(int penalty) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        assertThat(accountWorld.account.getPenalty()).isEqualTo(penalty);
     }
 }
