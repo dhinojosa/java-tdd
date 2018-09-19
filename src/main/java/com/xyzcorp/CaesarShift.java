@@ -20,14 +20,24 @@ public class CaesarShift {
         return encodeWord(s, -shift);
     }
 
+//    private String encodeWordLambda(String s, int actualShift) {
+//        Objects.requireNonNull(s, STRING_CANNOT_BE_NULL);
+//        if (s.isEmpty()) return s;
+//        return s.chars()
+//         .boxed()
+//         .map(c -> encodeChar((char) c.intValue(), actualShift))
+//         .map(String::valueOf)
+//         .collect(Collectors.joining());
+//    }
+
     private String encodeWord(String s, int actualShift) {
         Objects.requireNonNull(s, STRING_CANNOT_BE_NULL);
         if (s.isEmpty()) return s;
-        return s.chars()
-         .boxed()
-         .map(c -> encodeChar((char) c.intValue(), actualShift))
-         .map(String::valueOf)
-         .collect(Collectors.joining());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            stringBuilder.append(encodeChar(s.charAt(i), actualShift));
+        }
+        return stringBuilder.toString();
     }
 
     private char encodeChar(char c, int actualShift) {

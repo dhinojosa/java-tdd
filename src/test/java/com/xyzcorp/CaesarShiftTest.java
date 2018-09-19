@@ -153,4 +153,10 @@ public class CaesarShiftTest {
         CaesarShift cs = new CaesarShift(1);
         assertThat(cs.decode("a")).isEqualTo("z");
     }
+
+    @Test
+    public void testEncodeAndDecodeOfHelloWorld() {
+        CaesarShift cs = new CaesarShift(50);
+        assertThat(cs.decode(cs.encode("Hello World!"))).isEqualTo("Hello World!");
+    }
 }
