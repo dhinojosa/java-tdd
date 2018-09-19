@@ -60,5 +60,4 @@ public class LibraryParserTest {
         assertThat(checkoutList.get(1).getName()).isEqualTo("Hao Guan");
         assertThat(checkoutList).hasSize(2);
     }
-    //there are likely be a lot more tests
 }
