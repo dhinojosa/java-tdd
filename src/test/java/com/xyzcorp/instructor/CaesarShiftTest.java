@@ -98,8 +98,10 @@ public class CaesarShiftTest {
         assertThat(CaesarShift.encode("a", -1)).isEqualTo("z");
     }
 
+    @Test
+    public void testEncodeWithACapitalAAnd1() {
+        assertThat(CaesarShift.encode("A", 1)).isEqualTo("B");
+    }
     // Greek Letters or anything else that is a letter.
-    // Capital letter
-    // Test: Small A with -1 shift
     // Decoding
 }

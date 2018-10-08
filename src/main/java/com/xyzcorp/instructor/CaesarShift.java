@@ -7,6 +7,7 @@ public class CaesarShift {
 
     public static final int ALPHA_SIZE = 26;
     public static final char SMALL_A = 'a';
+    public static final char CAPITAL_A = 'A';
 
     public static String encode(String string, int shift) {
         if (string == null)
@@ -17,16 +18,13 @@ public class CaesarShift {
            builder.append(shiftChar(shift, c));
         }
         return builder.toString();
-//        Stream<Integer> integerStream = string.chars().boxed();
-//        Stream<String> characterStream =
-//                integerStream.map(i -> String.valueOf(shiftChar(shift, (char) i.intValue())));
-//        return characterStream.collect(Collectors.joining());
     }
 
     private static char shiftChar(int shift, char currentChar) {
         char actualChar = currentChar;
+        char preferredA = Character.isUpperCase(currentChar) ? CAPITAL_A : SMALL_A;
         if (Character.isAlphabetic(currentChar)) {
-            actualChar = (char)((currentChar - SMALL_A + shift) % ALPHA_SIZE + SMALL_A);
+            actualChar = (char)((currentChar - preferredA + shift + ALPHA_SIZE) % ALPHA_SIZE + preferredA);
         }
         return actualChar;
     }
