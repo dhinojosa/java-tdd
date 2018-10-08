@@ -82,14 +82,24 @@ public class CaesarShiftTest {
         assertThat(CaesarShift.encode("z", 1)).isEqualTo("a");
     }
 
-    // 'he' -> + 1 -> if
+    @Test
+    public void testEncodeWithTwoSmallLettersWithAShiftOf1() {
+        assertThat(CaesarShift.encode("ab", 1)).isEqualTo("bc");
+    }
+
+    //Green Bar!
+    @Test
+    public void testEncodeWithASmallBAndNegative1() {
+        assertThat(CaesarShift.encode("b", -1)).isEqualTo("a");
+    }
+
+    @Test
+    public void testEncodeWithASmallAAndNegative1() {
+        assertThat(CaesarShift.encode("a", -1)).isEqualTo("z");
+    }
+
     // Greek Letters or anything else that is a letter.
     // Capital letter
-
-
-    //I don't know to do about Greek Letters...
-//    @Test
-//    public void testSpecialCharactersWithAUnicodeThatIsNotStandardAscii() {
-//        assertThat(CaesarShift.encode("Δ", 1)).isEqualTo("Δ");
-//    }
+    // Test: Small A with -1 shift
+    // Decoding
 }
