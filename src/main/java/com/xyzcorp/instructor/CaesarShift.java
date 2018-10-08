@@ -1,13 +1,12 @@
 package com.xyzcorp.instructor;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class CaesarShift {
 
     public static final int ALPHA_SIZE = 26;
     public static final char SMALL_A = 'a';
     public static final char CAPITAL_A = 'A';
+
+    private CaesarShift() {}
 
     public static String encode(String string, int shift) {
         if (string == null)
@@ -27,5 +26,9 @@ public class CaesarShift {
             actualChar = (char)((currentChar - preferredA + shift + ALPHA_SIZE) % ALPHA_SIZE + preferredA);
         }
         return actualChar;
+    }
+
+    public static String decode(String string, int shift) {
+        return encode(string, -shift);
     }
 }

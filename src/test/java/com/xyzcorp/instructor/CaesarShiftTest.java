@@ -1,14 +1,11 @@
 package com.xyzcorp.instructor;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.fail;
-import static org.junit.Assert.assertEquals;
-
-import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 public class CaesarShiftTest {
 
@@ -102,6 +99,48 @@ public class CaesarShiftTest {
     public void testEncodeWithACapitalAAnd1() {
         assertThat(CaesarShift.encode("A", 1)).isEqualTo("B");
     }
+
+    //Green Bar
+    @Test
+    public void testEncodeWithACapitalAAnd26() {
+        assertThat(CaesarShift.encode("A", 26)).isEqualTo("A");
+    }
+
+    @Test
+    public void testEncodeWithACapitalAAnd2600() {
+        assertThat(CaesarShift.encode("A", 2600)).isEqualTo("A");
+    }
+
+    @Test
+    public void testEncodeWithACapitalAAndNeg2600() {
+        assertThat(CaesarShift.encode("A", -2600)).isEqualTo("A");
+    }
+
+    @Test
+    public void testDecodeWithAnEmptyStringAndZero() {
+        assertThat(CaesarShift.decode("", 0)).isEqualTo("");
+    }
+
+    //Green Bar Test
+    @Test
+    public void testDecodeWithNull() {
+        assertThatThrownBy(() -> CaesarShift.decode(null, 0))
+                .hasMessage("String cannot be null")
+                .isInstanceOf(NullPointerException.class);
+    }
+
+    @Test
+    public void testDecodeWithAnCapitalAAnd1() {
+        assertThat(CaesarShift.decode("A", 1)).isEqualTo("Z");
+    }
+
+    //green bar test
+    @Test
+    public void testEncodeAndDecodeOfHelloWorld() {
+        int shift = 10;
+        String result = CaesarShift.decode(CaesarShift.encode("Hello, World", shift), shift);
+        assertThat(result).isEqualTo("Hello, World");
+    }
+
     // Greek Letters or anything else that is a letter.
-    // Decoding
 }
