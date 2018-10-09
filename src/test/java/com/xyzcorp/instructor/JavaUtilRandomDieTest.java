@@ -12,11 +12,11 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.mockito.Mockito.*;
 
-public class DieTest {
+public class JavaUtilRandomDieTest {
 
     @Test
     public void testDefaultOf1WithRandom() {
-        Die die = new Die(mock(Random.class)); //Dummy
+        Die die = new JavaUtilRandomDie(mock(Random.class)); //Dummy
         assertThat(die.getPip()).isEqualTo(1);
     }
 
@@ -28,7 +28,7 @@ public class DieTest {
                 return 3;
             }
         };
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die resultDie = die.roll();
         assertThat(resultDie.getPip()).isEqualTo(4);
     }
@@ -41,7 +41,7 @@ public class DieTest {
                 return 2;
             }
         };
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die resultDie = die.roll();
         assertThat(resultDie.getPip()).isEqualTo(3);
     }
@@ -54,7 +54,7 @@ public class DieTest {
                 return 4;
             }
         };
-        Die die = new Die(random);  //SUT (Subject under test)
+        Die die = new JavaUtilRandomDie(random);  //SUT (Subject under test)
         Die resultDie = die.roll();
         assertThat(resultDie.getPip()).isEqualTo(5);
     }
@@ -64,7 +64,7 @@ public class DieTest {
         Random random = mock(Random.class); //Collaborator
         when(random.nextInt(6)).thenReturn(3,5);
 
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die result = die.roll().roll();
         assertThat(result.getPip()).isEqualTo(6);
 
@@ -76,7 +76,7 @@ public class DieTest {
         Random random = mock(Random.class); //Collaborator
         when(random.nextInt(6)).thenReturn(5);
 
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die result = die.roll();
         assertThat(result.getPip()).isGreaterThan(0).isLessThan(7);
 
@@ -90,7 +90,7 @@ public class DieTest {
 
         replay(random);
 
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die result = die.roll();
         assertThat(result.getPip()).isGreaterThan(0).isLessThan(7);
 
@@ -104,7 +104,7 @@ public class DieTest {
 
         replay(random);
 
-        Die die = new Die(random);
+        Die die = new JavaUtilRandomDie(random);
         Die result = die.roll();
         assertThat(result.getPip()).isGreaterThan(0).isLessThan(7);
 
@@ -114,7 +114,7 @@ public class DieTest {
     @Category(value = IntegrationTest.class)
     public void testIntegrationWithRealRandom() { //4012
         Random random = new Random();
-        Die die = new Die(random); //TDD
+        Die die = new JavaUtilRandomDie(random); //TDD
         for(int i = 0; i < 1000000; i++) {
             assertThat(die.roll().getPip()).isGreaterThan(0).isLessThan(7);
         }
