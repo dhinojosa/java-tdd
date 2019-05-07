@@ -10,15 +10,14 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-public class DieTest {
+public class JavaUtilRandomDieTest {
 
     @Test
     public void testDefaultShouldBe1() {
         Random dummy = createMock(Random.class);
-        Die die = new Die(dummy);
+        Die die = new JavaUtilRandomDie(dummy);
         assertThat(die.getPips()).isEqualTo(1);
     }
 
@@ -30,7 +29,7 @@ public class DieTest {
                 return 4;
             }
         };
-        Die die = new Die(randomStub);
+        Die die = new JavaUtilRandomDie(randomStub);
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(5);
     }
@@ -47,7 +46,7 @@ public class DieTest {
         replay(randomMock);
 
         //Actual Test
-        Die die = new Die(randomMock);
+        Die die = new JavaUtilRandomDie(randomMock);
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(5);
 
@@ -55,14 +54,14 @@ public class DieTest {
         verify(randomMock);
     }
 
-    @Test
+
     public void testRollOf2UsingMockito() {
         //Initialization
         Random randomMock = mock(Random.class);
         when(randomMock.nextInt(6)).thenReturn(2);
 
         //Actual Test
-        Die die = new Die(randomMock);
+        Die die = new JavaUtilRandomDie(randomMock);
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isEqualTo(3);
 
@@ -76,11 +75,11 @@ public class DieTest {
         when(randomMock.nextInt(6)).thenReturn(2,4);
 
         //Actual Test
-        Die die = new Die(randomMock);
+        Die die = new JavaUtilRandomDie(randomMock);
         Die rolledDie = die.roll().roll();
         assertThat(rolledDie.getPips()).isEqualTo(5);
 
-        Mockito.verify(randomMock);
+        Mockito.verify(randomMock, times(2)).nextInt(6);
     }
 
     @Test
@@ -90,11 +89,11 @@ public class DieTest {
         when(randomMock.nextInt(6)).thenReturn(5);
 
         //Actual Test
-        Die die = new Die(randomMock);
+        Die die = new JavaUtilRandomDie(randomMock);
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isGreaterThan(0).isLessThan(7);
 
-        Mockito.verify(randomMock);
+        Mockito.verify(randomMock).nextInt(6);
     }
 
 
@@ -103,26 +102,13 @@ public class DieTest {
         when(randomMock.nextInt(6)).thenReturn(0);
 
         //Actual Test
-        Die die = new Die(randomMock);
+        Die die = new JavaUtilRandomDie(randomMock);
         Die rolledDie = die.roll();
         assertThat(rolledDie.getPips()).isGreaterThan(0).isLessThan(7);
 
         Mockito.verify(randomMock).nextInt(7);
     }
 
-    //ToDelete
-    @Test
-    public void testBUG43040WithSeven() {
-        Random randomMock = mock(Random.class);
-        when(randomMock.nextInt(6)).thenReturn(6);
-
-        //Actual Test
-        Die die = new Die(randomMock);
-        Die rolledDie = die.roll();
-        assertThat(rolledDie.getPips()).isGreaterThan(0).isLessThan(7);
-
-        Mockito.verify(randomMock).nextInt(7);
-    }
 
     /**
      * Google Search for Unit vs. Integration
@@ -134,12 +120,18 @@ public class DieTest {
      */
     @Test
     public void testRealRandomDistributionIT() {
-        Die die = new Die(new Random());
+        Die die = new JavaUtilRandomDie(new Random());
         for(int i = 1; i <= 1000000; i++) {
            assertThat(die.roll().getPips()).isGreaterThan(0).isLessThan(7);
         }
     }
 
-    //Factory Pattern?
+
+
+    @Test
+    public void testFactoryMethodToCreateDie() {
+        Die die = JavaUtilRandomDie.create();
+        assertThat(die).isNotNull();
+    }
 
 }
