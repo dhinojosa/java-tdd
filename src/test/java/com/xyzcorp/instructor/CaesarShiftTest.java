@@ -85,20 +85,76 @@ public class CaesarShiftTest {
     }
 
 
-    //4
-    public void testNumbersAndSpecialCharacter() {}
+    @Test
+    public void testLowerZAndShiftOf1() {
+        String result = CaesarShift.encode("z", 1);
+        assertThat(result).isEqualTo("a");
+    }
 
-    //5
-    public void testSpaces() {}
+    //GreenBar
+    @Test
+    public void testShift26times2() {
+        String result = CaesarShift.encode("c", 26 * 2);
+        assertThat(result).isEqualTo("c");
+    }
 
-    public void testZAndShiftOf1() {}
+    //GreenBar
+    @Test
+    public void testShift26times2plus1() {
+        String result = CaesarShift.encode("c", (26 * 2) + 1);
+        assertThat(result).isEqualTo("d");
+    }
 
-    public void testUpperCase() {}
+    @Test
+    public void testNumbersAndSpecialCharacter() {
+        int randomNumberBecauseItDoesntMatter = 40002;
+        String result = CaesarShift.encode("!", randomNumberBecauseItDoesntMatter);
+        assertThat(result).isEqualTo("!");
+    }
 
-    public void testNegativeShift() {}
+    //GreenBar
+    @Test
+    public void testSpaces() {
+        String result = CaesarShift.encode(" ", 40002);
+        assertThat(result).isEqualTo(" ");
+    }
 
-    public void testShiftMoreThan26() {} //YIKES!!!
+    @Test
+    public void testUpperCaseAandShift1() {
+        String result = CaesarShift.encode("A", 1);
+        assertThat(result).isEqualTo("B");
+    }
 
-    public void testLessThanNegative26() {}
+    //GreenBar
+    @Test
+    public void testNegativeShiftWithSmallB() {
+        String result = CaesarShift.encode("b", -1);
+        assertThat(result).isEqualTo("a");
+    }
 
+    @Test
+    public void testNegativeShiftWithSmallA() {
+        String result = CaesarShift.encode("a", -1);
+        assertThat(result).isEqualTo("z");
+    }
+
+    @Test
+    public void testNegativeShiftWithCapital() {
+        String result = CaesarShift.encode("A", -1);
+        assertThat(result).isEqualTo("Z");
+    }
+
+    @Test
+    public void testLessThanNegative26() {
+        String result = CaesarShift.encode("A", -28);
+        assertThat(result).isEqualTo("Y");
+    }
+
+    @Test
+    public void testDecodeWithSmallAAndShiftOf1() {
+        String result = CaesarShift.decode("a", 1);
+        assertThat(result).isEqualTo("z");
+    }
+
+    public void testGreekLetters() {}
 }
