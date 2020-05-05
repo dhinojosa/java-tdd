@@ -13,8 +13,9 @@ public class Fibonacci {
     }
 
     public static int apply(int i) {
+        if (i < 0) throw new IllegalArgumentException("Number cannot be negative");
         if (i == 0 || i == 1) return i;
-            //else return apply(i - 1) + apply(i - 2);
-        else return loop(i);
+        //else return apply(i - 1) + apply(i - 2);
+        return loop(i);
     }
 }

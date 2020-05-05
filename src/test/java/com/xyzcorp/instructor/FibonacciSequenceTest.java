@@ -3,6 +3,7 @@ package com.xyzcorp.instructor;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FibonacciSequenceTest {
 
@@ -19,6 +20,11 @@ public class FibonacciSequenceTest {
     @Test
     public void testOne() {
         assertThat(Fibonacci.apply(1)).isEqualTo(1);
+    }
+
+    @Test
+    public void testNonNegative() {
+        assertThatThrownBy(() -> Fibonacci.apply(-3)).hasMessage("Number cannot be negative");
     }
 
     @Test

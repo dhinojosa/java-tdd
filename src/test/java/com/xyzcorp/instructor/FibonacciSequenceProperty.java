@@ -15,7 +15,7 @@ public class FibonacciSequenceProperty {
     static Logger logger = LoggerFactory.getLogger(FibonacciSequenceProperty.class);
 
     @Property
-    @Label("F(n) > n")
+    @Label("F(n) > n where n > 5")
     public void resultShouldBeGreaterThanTheNumberThatItStarted
         (@ForAll @IntRange(min = 6, max = 34) int i) {
         assertThat(Fibonacci.apply(i)).isGreaterThan(i);
