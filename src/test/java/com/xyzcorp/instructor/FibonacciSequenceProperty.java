@@ -18,7 +18,7 @@ public class FibonacciSequenceProperty {
     @Label("F(n) > n where n > 5")
     public void resultShouldBeGreaterThanTheNumberThatItStarted
         (@ForAll @IntRange(min = 6, max = 34) int i) {
-        assertThat(Fibonacci.apply(i)).isGreaterThan(i);
+        assertThat(FibonacciSequence.apply(i)).isGreaterThan(i);
     }
 
     @Property
@@ -26,6 +26,6 @@ public class FibonacciSequenceProperty {
     public void resultShouldBeSumFibMinus1FibMinus2
         (@ForAll @IntRange(min = 2, max = 34) int i) {
         logger.debug(Integer.toString(i));
-        assertThat(Fibonacci.apply(i)).isEqualTo(Fibonacci.apply(i-1) + Fibonacci.apply(i - 2));
+        assertThat(FibonacciSequence.apply(i)).isEqualTo(FibonacciSequence.apply(i-1) + FibonacciSequence.apply(i - 2));
     }
 }

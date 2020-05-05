@@ -14,26 +14,26 @@ public class FibonacciSequenceTest {
 
     @Test
     public void testZero() {
-        assertThat(Fibonacci.apply(0)).isEqualTo(0);
+        assertThat(FibonacciSequence.apply(0)).isEqualTo(0);
     }
 
     @Test
     public void testOne() {
-        assertThat(Fibonacci.apply(1)).isEqualTo(1);
+        assertThat(FibonacciSequence.apply(1)).isEqualTo(1);
     }
 
     @Test
     public void testNonNegative() {
-        assertThatThrownBy(() -> Fibonacci.apply(-3)).hasMessage("Number cannot be negative");
+        assertThatThrownBy(() -> FibonacciSequence.apply(-3)).hasMessage("Number cannot be negative");
     }
 
     @Test
     public void testTwo() {
-        assertThat(Fibonacci.apply(2)).isEqualTo(Fibonacci.apply(1) + Fibonacci.apply(0));
+        assertThat(FibonacciSequence.apply(2)).isEqualTo(FibonacciSequence.apply(1) + FibonacciSequence.apply(0));
     }
 
     @Test
     public void test34() {
-        assertThat(Fibonacci.apply(34)).isEqualTo(5702887);
+        assertThat(FibonacciSequence.apply(34)).isEqualTo(5702887);
     }
 }
