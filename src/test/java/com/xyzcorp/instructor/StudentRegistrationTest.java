@@ -20,12 +20,9 @@ public class StudentRegistrationTest {
 
     @Test
     void testRegisterStudentWithARealDAO() {
-        StudentDAO realDAO = new StudentDAO() {
-            @Override
-            public Integer persist(Student student) {
-                ///actual call to db
-                return 30;
-            }
+        StudentDAO realDAO = student -> {
+            ///actual call to db
+            return 30;
         };
         Student student = new Student("Bob", "Awesome", "202-12-1233");
         Function<Student, Integer> f = realDAO::persist;

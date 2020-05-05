@@ -6,7 +6,6 @@ public class StudentRegistration {
     private Function<Student, Integer> studentDAO;
 
     public StudentRegistration(Function<Student, Integer> studentDAO) {
-
         this.studentDAO = studentDAO;
     }
 
