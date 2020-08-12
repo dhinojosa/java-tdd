@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PersonTest {
     @Test
     void testFirstName() {
-        Person person = Person.create("Francene", "Gonzales", LocalDate.of(2000,
+        Person person = Person.of("Francene", "Gonzales", LocalDate.of(2000,
             2, 12));
         assertThat(person.getFirstName()).isEqualTo("Francene");
     }

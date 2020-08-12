@@ -19,7 +19,8 @@ public class Person {
         this.now = now;
     }
 
-    protected static Person create(String firstName, String lastName, LocalDate birthday) {
+    protected static Person of(
+        String firstName, String lastName, LocalDate birthday) {
         return new Person(firstName, lastName, birthday, LocalDate::now);
     }
 
