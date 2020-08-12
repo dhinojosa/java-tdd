@@ -14,4 +14,6 @@ To run coverage (using jacoco)
     
 To run coverage (using cobertura)
 
-    mvn clean cobertura:cobertura
+    mvn clean package
+    
+View the report in `./target/site/jacoco/index.html`
