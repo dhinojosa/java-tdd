@@ -173,3 +173,5 @@ local.properties
 .worksheet
 /target/
 .jqwik-database
+.metals/
+.vscode/
