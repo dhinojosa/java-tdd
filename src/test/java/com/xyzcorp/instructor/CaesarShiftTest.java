@@ -111,4 +111,23 @@ public class CaesarShiftTest {
         assertThat(result).isEqualTo("BC");
     }
 
+    @Test
+    void testDecodeWithBCAnd1() {
+        String result = CaesarShift.decode("BC", 1);
+        assertThat(result).isEqualTo("AB");
+    }
+
+    @Test
+    void testDecodeWithZYAnd1() {
+        String result = CaesarShift.decode("ZY", 1);
+        assertThat(result).isEqualTo("YX");
+    }
+
+    @Test
+    void testAPhraseEncodeThenDecodedShouldBeOriginal() {
+        String original = "Hello World";
+        String result =
+            CaesarShift.decode(CaesarShift.encode(original, 10), 10);
+        assertThat(result).isEqualTo(original);
+    }
 }

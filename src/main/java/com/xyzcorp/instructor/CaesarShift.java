@@ -17,6 +17,10 @@ public class CaesarShift {
     private static char encodeChar(char c, int shift) {
         char whichA = Character.isUpperCase(c) ? 'A' : 'a';
         if (!Character.isAlphabetic(c)) return c;
-        return (char) (((c - whichA + shift + 26) % 26) + whichA);
+        return (char) (((c - whichA + (shift % 26) + 26) % 26) + whichA);
+    }
+
+    public static String decode(String string, int shift) {
+        return encode(string, -shift);
     }
 }
