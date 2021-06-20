@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

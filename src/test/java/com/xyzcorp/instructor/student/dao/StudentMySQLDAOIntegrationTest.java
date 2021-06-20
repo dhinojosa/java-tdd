@@ -1,5 +1,8 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.dao;
 
+import com.xyzcorp.instructor.student.domain.Student;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +15,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
 class StudentMySQLDAOIntegrationTest {
+    private static Connection connection;
+
+    @BeforeAll
+    static void init() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
+            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
+            "=init_student_mysql.sql");
+    }
+
     @Test
     @Tag(value = "integration")
     void testPersistStudentFull() throws SQLException, ClassNotFoundException {
@@ -47,6 +60,8 @@ class StudentMySQLDAOIntegrationTest {
                 student.getStudentId()));
         }
 
+        preparedStatement.close();
+
         /* Assertions */
         assertThat(result).isNotEmpty();
         assertThat(result.get().getId()).isNotEmpty();
@@ -58,12 +73,6 @@ class StudentMySQLDAOIntegrationTest {
 
     @Test
     void findByStudentID() throws ClassNotFoundException, SQLException {
-        /* Get connection */
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
-            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
-            "=init_student_mysql.sql");
-
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE id " +
@@ -85,6 +94,8 @@ class StudentMySQLDAOIntegrationTest {
                 studentId));
         }
 
+        preparedStatement.close();
+
         /* Assertions */
         assertThat(result).isNotEmpty();
         assertThat(result.get().getFirstName()).isEqualTo("Rod");
@@ -95,12 +106,6 @@ class StudentMySQLDAOIntegrationTest {
 
     @Test
     void findByLikeFirstNameFull() throws SQLException, ClassNotFoundException {
-        /* Get connection */
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
-            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
-            "=init_student_mysql.sql");
-
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE " +
@@ -132,12 +137,6 @@ class StudentMySQLDAOIntegrationTest {
 
     @Test
     void findByLikeLastName() throws SQLException, ClassNotFoundException {
-        /* Get connection */
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
-            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
-            "=init_student_mysql.sql");
-
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE " +
@@ -165,6 +164,11 @@ class StudentMySQLDAOIntegrationTest {
         assertThat(result.get(1).getFirstName()).isEqualTo("Paul");
         assertThat(result.get(1).getLastName()).isEqualTo("McCartney");
         assertThat(result.get(1).getStudentId()).isEqualTo("002");
+    }
+
+    @AfterAll
+    static void tearDown() throws SQLException {
+        connection.close();
     }
 }
 

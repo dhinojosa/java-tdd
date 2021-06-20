@@ -1,9 +1,11 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.fibbonacci;
 
+import com.xyzcorp.instructor.fibonacci.FibonacciSequence;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Label;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
+import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +20,7 @@ public class FibonacciSequenceProperty {
     @Label("F(n) > n where n > 5")
     public void resultShouldBeGreaterThanTheNumberThatItStarted
         (@ForAll @IntRange(min = 6, max = 34) int i) {
-        assertThat(FibonacciSequence.apply(i)).isGreaterThan(i);
+        Assertions.assertThat(FibonacciSequence.apply(i)).isGreaterThan(i);
     }
 
     @Property

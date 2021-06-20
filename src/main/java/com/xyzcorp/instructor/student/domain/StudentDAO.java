@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.domain;
 
 import java.util.List;
 import java.util.Optional;

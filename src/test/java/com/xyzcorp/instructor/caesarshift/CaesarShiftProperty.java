@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.caesarshift;
 
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;

@@ -1,4 +1,8 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.dao;
+
+import com.xyzcorp.instructor.student.domain.Student;
+import com.xyzcorp.instructor.student.domain.StudentDAO;
+import com.xyzcorp.instructor.student.domain.StudentDAOException;
 
 import java.sql.*;
 import java.util.ArrayList;

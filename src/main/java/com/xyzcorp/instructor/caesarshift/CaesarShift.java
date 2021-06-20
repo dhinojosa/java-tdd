@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.caesarshift;
 
 import java.util.Objects;
 import java.util.stream.Collectors;

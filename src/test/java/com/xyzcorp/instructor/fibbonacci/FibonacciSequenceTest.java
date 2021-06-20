@@ -1,5 +1,7 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.fibbonacci;
 
+import com.xyzcorp.instructor.fibonacci.FibonacciSequence;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +16,7 @@ public class FibonacciSequenceTest {
 
     @Test
     public void testZero() {
-        assertThat(FibonacciSequence.apply(0)).isEqualTo(0);
+        Assertions.assertThat(FibonacciSequence.apply(0)).isEqualTo(0);
     }
 
     @Test

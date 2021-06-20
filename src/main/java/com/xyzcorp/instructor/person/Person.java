@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.person;
 
 import java.time.LocalDate;
 import java.util.function.Supplier;

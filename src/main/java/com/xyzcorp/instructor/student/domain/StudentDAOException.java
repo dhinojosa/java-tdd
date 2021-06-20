@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.domain;
 
 public class StudentDAOException extends Exception{
     public StudentDAOException() {

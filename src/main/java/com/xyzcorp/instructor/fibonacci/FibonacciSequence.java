@@ -1,7 +1,7 @@
-package com.xyzcorp.instructor;
+package com.xyzcorp.instructor.fibonacci;
 
 public class FibonacciSequence {
-	
+
 	private static int loop(int n) {
 		int[] f = new int[n + 2]; // 1 extra to handle case, n = 0
 		int i;

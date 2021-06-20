@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor.dao;
+package com.xyzcorp.instructor.student.domain;
 
 import java.util.Optional;
 
@@ -14,7 +14,7 @@ public class Student {
         this.studentId = studentId;
     }
 
-    protected Student(Long id, String firstName, String lastName, String studentId) {
+    public Student(Long id, String firstName, String lastName, String studentId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
