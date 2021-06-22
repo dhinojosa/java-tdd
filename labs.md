@@ -33,12 +33,12 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg/1200px-Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg.png" alt="drawing" width="10%" height="10%"/>
 
-#Lab 4: Working on Library Books Together
+# Lab 4: Working on Library Books Together
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg/1200px-Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg.png" alt="drawing" width="10%" height="10%"/>
 
 
-#Lab 5: Blackjack
+# Lab 5: Blackjack
 
 * Using some refactoring techniques, we will create a `Hand` class that represents a `Hand`
 * Make sure the tests continue to pass as you do the refactoring steps.
@@ -54,7 +54,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg/1200px-Italian_traffic_signs_-_fermarsi_e_dare_precedenza_-_stop.svg.png" alt="drawing" width="10%" height="10%"/>
 
-#Lab 6: Wrap Class
+# Lab 6: Wrap Class
 
 * Using some refactoring techniques we learned, slowly and methodically add some auditing to the `Deck` class
 * **DO NOT TOUCH THE `Deck` class**
