@@ -25,14 +25,18 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
                 prepareInsertStudentStatement(student, connection);
             preparedStatement.execute();
             /* Generate a copy of object with keys */
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                return generatedKeys.getLong(1);
-            } else {
-                throw new StudentDAOException("Unable to persist student");
-            }
+            return getPrimaryKey(preparedStatement);
         } catch (SQLException | ClassNotFoundException e) {
             throw new StudentDAOException(e);
+        }
+    }
+
+    private long getPrimaryKey(PreparedStatement preparedStatement) throws SQLException {
+        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getLong(1);
+        } else {
+            throw new StudentDAOException("Unable to persist student");
         }
     }
 
