@@ -12,10 +12,10 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
+@Tag(value = "integration")
 class StudentMySQLDAORefactorTwoIntegrationTest {
 
     @Test
-    @Tag(value = "integration")
     void testPersistStudent() throws StudentDAOException {
         /* Student */
         String firstName = "Cool";
@@ -37,7 +37,6 @@ class StudentMySQLDAORefactorTwoIntegrationTest {
 
 
     @Test
-    @Tag(value = "integration")
     void testFindById() throws StudentDAOException {
         StudentDAO studentDAO =
             new MySQLStudentDAORefactorTwo("jdbc:tc:mysql:5" +

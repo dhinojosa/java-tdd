@@ -11,6 +11,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
+@Tag(value = "integration")
 class StudentMySQLDAORefactorOneIntegrationTest {
 
     @Test
@@ -36,7 +37,6 @@ class StudentMySQLDAORefactorOneIntegrationTest {
 
 
     @Test
-    @Tag(value = "integration")
     void testFindById() throws StudentDAOException {
         MySQLStudentDAORefactorOne mySQLStudentDAORefactorOne =
             new MySQLStudentDAORefactorOne("jdbc:tc:mysql:5" +

@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
+@Tag(value = "integration")
 class StudentMySQLDAOIntegrationTest {
     private static Connection connection;
 
@@ -26,7 +27,6 @@ class StudentMySQLDAOIntegrationTest {
     }
 
     @Test
-    @Tag(value = "integration")
     void testPersistStudentFull() throws SQLException, ClassNotFoundException {
         /* Student */
         String firstName = "Cool";
