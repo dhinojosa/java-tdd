@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
-            <version>3.4</version>
+            <version>4.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -170,7 +170,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.7</version>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>

@@ -1,7 +1,7 @@
 package com.xyzcorp.instructor.student.dao;
 
-import com.xyzcorp.instructor.student.dao.domain.StudentDAOException;
 import com.xyzcorp.instructor.student.domain.Student;
+import com.xyzcorp.instructor.student.domain.StudentDAOException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ class StudentMySQLDAORefactorOneIntegrationTest {
             mySQLStudentDAORefactorOne.persist(student);
 
         /* Assertions */
-        assertThat(result).isNotEmpty();
+        assertThat(result.get()).isNotNull();
         assertThat(result.get().getId()).isNotEmpty();
         assertThat(result.get().getId().get()).isEqualTo(6L);
         assertThat(result.get().getFirstName()).isEqualTo("Cool");

@@ -1,7 +1,7 @@
 package com.xyzcorp.instructor.student.dao;
 
-import com.xyzcorp.instructor.student.dao.domain.StudentDAO;
-import com.xyzcorp.instructor.student.dao.domain.StudentDAOException;
+import com.xyzcorp.instructor.student.domain.StudentDAO;
+import com.xyzcorp.instructor.student.domain.StudentDAOException;
 import com.xyzcorp.instructor.student.domain.Student;
 
 import java.sql.*;
@@ -100,7 +100,7 @@ public class MySQLStudentDAORefactorTwo implements StudentDAO {
                 executeInsert(student, preparedStatement);
                 return student2StudentWithId(student, preparedStatement);
             } catch (SQLException e) {
-                e.printStackTrace();
+              e.printStackTrace();
             }
             return Optional.empty();
         });
