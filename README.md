@@ -11,9 +11,4 @@ To run tests:
 To run coverage (using jacoco)
 
     mvn clean package
-    
-To run coverage (using cobertura)
 
-    mvn clean package
-    
-View the report in `./target/site/jacoco/index.html`
