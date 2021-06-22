@@ -53,21 +53,15 @@ class StudentMySQLDAOIntegrationTest {
         /* Generate a copy of object with keys */
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 
-        Optional<Student> result = Optional.empty();
+        Long result = 0L;
         while (generatedKeys.next()) {
-            result = Optional.of(new Student(generatedKeys.getLong(1),
-                student.getFirstName(), student.getLastName(),
-                student.getStudentId()));
+            result = generatedKeys.getLong(1);
         }
 
         preparedStatement.close();
 
         /* Assertions */
-        assertThat(result).isNotEmpty();
-        assertThat(result.get().getId()).isNotEmpty();
-        assertThat(result.get().getId().get()).isEqualTo(6L);
-        assertThat(result.get().getFirstName()).isEqualTo("Cool");
-        assertThat(result.get().getLastName()).isEqualTo("Moe Dee");
+        assertThat(result).isGreaterThan(0);
     }
 
 

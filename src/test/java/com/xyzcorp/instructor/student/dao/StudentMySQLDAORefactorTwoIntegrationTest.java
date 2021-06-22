@@ -28,14 +28,11 @@ class StudentMySQLDAORefactorTwoIntegrationTest {
                 ".7.34:///university?user=root&password=&xTC_INITSCRIPT" +
                 "=init_student_mysql.sql");
 
-        Optional<Student> result =
+        Long result =
             studentDAO.persist(student);
 
         /* Assertions */
-        assertThat(result).isNotEmpty();
-        assertThat(result.get().getId()).isNotEmpty();
-        assertThat(result.get().getId().get()).isEqualTo(7L);
-        assertThat(result.get().getFirstName()).isEqualTo("Cool");
+        assertThat(result).isGreaterThan(0L);
     }
 
 

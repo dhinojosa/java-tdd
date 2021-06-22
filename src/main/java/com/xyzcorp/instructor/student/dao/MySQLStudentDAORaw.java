@@ -13,7 +13,7 @@ import java.util.Optional;
 public class MySQLStudentDAORaw implements StudentDAO {
 
     @Override
-    public Optional<Student> persist(Student student) throws StudentDAOException {
+    public Long persist(Student student) throws StudentDAOException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:tc" +
@@ -33,13 +33,10 @@ public class MySQLStudentDAORaw implements StudentDAO {
             /* Generate a copy of object with keys */
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 
-            Optional<Student> result = Optional.empty();
             while (generatedKeys.next()) {
-                result = Optional.of(new Student(generatedKeys.getLong(1),
-                    student.getFirstName(), student.getLastName(),
-                    student.getStudentId()));
+                return generatedKeys.getLong(1);
             }
-            return result;
+            throw new StudentDAOException("Unable to persist");
         } catch (SQLException | ClassNotFoundException e) {
             throw new StudentDAOException(e);
         }

@@ -19,7 +19,7 @@ public class StudentServiceTest {
 
         expect(studentDAO.findByStudentId("001")).andReturn(Optional.empty());
         expect(studentDAO.persist(new Student("Ray", "Polansky", "001")))
-            .andReturn(Optional.of(expected));
+            .andReturn(1001L);
 
         replay(studentDAO);
 
@@ -34,7 +34,9 @@ public class StudentServiceTest {
         StudentDAO studentDAO = mock(StudentDAO.class);
         StudentService studentService = new StudentService(studentDAO);
 
-        expect(studentDAO.findByStudentId("001")).andReturn(Optional.empty());
+        Student expected = new Student(1001L, "Ray", "Polansky", "001");
+
+        expect(studentDAO.findByStudentId("001")).andReturn(Optional.of(expected));
 
         replay(studentDAO);
 

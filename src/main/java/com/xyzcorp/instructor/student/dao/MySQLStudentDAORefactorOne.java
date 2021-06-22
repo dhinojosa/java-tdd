@@ -1,8 +1,8 @@
 package com.xyzcorp.instructor.student.dao;
 
+import com.xyzcorp.instructor.student.domain.Student;
 import com.xyzcorp.instructor.student.domain.StudentDAO;
 import com.xyzcorp.instructor.student.domain.StudentDAOException;
-import com.xyzcorp.instructor.student.domain.Student;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,13 +18,19 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
     }
 
     @Override
-    public Optional<Student> persist(Student student) throws StudentDAOException {
+    public Long persist(Student student) throws StudentDAOException {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement =
                 prepareInsertStudentStatement(student, connection);
             preparedStatement.execute();
-            return generateStudentWithPrimaryKey(student, preparedStatement);
+            /* Generate a copy of object with keys */
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getLong(1);
+            } else {
+                throw new StudentDAOException("Unable to persist student");
+            }
         } catch (SQLException | ClassNotFoundException e) {
             throw new StudentDAOException(e);
         }
@@ -35,20 +41,6 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(url);
         return connection;
-    }
-
-    private Optional<Student> generateStudentWithPrimaryKey(Student student,
-                                                            PreparedStatement preparedStatement) throws SQLException {
-        /* Generate a copy of object with keys */
-        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-
-        Optional<Student> result = Optional.empty();
-        while (generatedKeys.next()) {
-            result = Optional.of(new Student(generatedKeys.getLong(1),
-                student.getFirstName(), student.getLastName(),
-                student.getStudentId()));
-        }
-        return result;
     }
 
     private PreparedStatement prepareInsertStudentStatement(Student student,
@@ -69,8 +61,10 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
     public Optional<Student> findByStudentId(String studentID) throws StudentDAOException {
         try {
             /* Prepare Statement */
-            PreparedStatement preparedStatement = getConnection().prepareStatement(
-                "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE id " +
+            PreparedStatement preparedStatement =
+                getConnection().prepareStatement(
+                "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE" +
+                    " id " +
                     "= ?");
 
             preparedStatement.setLong(1, 1L);
@@ -96,7 +90,8 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
     public Optional<Student> findById(Long id) throws StudentDAOException {
         try {
             /* Prepare Statement */
-            PreparedStatement preparedStatement = getConnection().prepareStatement(
+            PreparedStatement preparedStatement =
+                getConnection().prepareStatement(
                 "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE" +
                     " id = ?");
 
@@ -124,8 +119,9 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
         try {
             PreparedStatement preparedStatement =
                 getConnection().prepareStatement(
-                "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE" +
-                    " firstName like ? ORDER BY firstName");
+                    "SELECT id, firstName, lastName, studentId FROM STUDENT " +
+                        "WHERE" +
+                        " firstName like ? ORDER BY firstName");
 
             preparedStatement.setString(1, "%" + name + "%");
             preparedStatement.execute();
@@ -150,8 +146,9 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
         try {
             PreparedStatement preparedStatement =
                 getConnection().prepareStatement(
-                "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE" +
-                    " lastName like ? ORDER BY lastName");
+                    "SELECT id, firstName, lastName, studentId FROM STUDENT " +
+                        "WHERE" +
+                        " lastName like ? ORDER BY lastName");
 
             preparedStatement.setString(1, "%" + name + "%");
             preparedStatement.execute();

@@ -1,6 +1,6 @@
 package com.xyzcorp.instructor.student.domain;
 
-public class StudentDAOException extends Exception{
+public class StudentDAOException extends RuntimeException{
     public StudentDAOException() {
         super();
     }

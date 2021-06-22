@@ -50,18 +50,6 @@ public class MySQLStudentDAORefactorTwo implements StudentDAO {
         return resultSetToListStudents(resultSet);
     }
 
-    private Optional<Student> student2StudentWithId(Student student,
-                                                    PreparedStatement preparedStatement) throws SQLException {
-        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-        Optional<Student> result = Optional.empty();
-        while (generatedKeys.next()) {
-            result = Optional.of(new Student(generatedKeys.getLong(1),
-                student.getFirstName(), student.getLastName(),
-                student.getStudentId()));
-        }
-        return result;
-    }
-
     private Optional<Student> resultSet2OptionalStudent(ResultSet resultSet) throws SQLException {
         Optional<Student> result = Optional.empty();
         while (resultSet.next()) {
@@ -88,7 +76,7 @@ public class MySQLStudentDAORefactorTwo implements StudentDAO {
     }
 
     @Override
-    public Optional<Student> persist(Student student) throws StudentDAOException {
+    public Long persist(Student student) throws StudentDAOException {
         return withConnection(connection -> {
             try (PreparedStatement preparedStatement =
                      connection.prepareStatement(
@@ -98,11 +86,16 @@ public class MySQLStudentDAORefactorTwo implements StudentDAO {
                              "?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 
                 executeInsert(student, preparedStatement);
-                return student2StudentWithId(student, preparedStatement);
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getLong(1);
+                } else {
+                    throw new StudentDAOException("Unable to persist student");
+                }
             } catch (SQLException e) {
               e.printStackTrace();
             }
-            return Optional.empty();
+            throw new StudentDAOException("Unable to persist student");
         });
     }
 

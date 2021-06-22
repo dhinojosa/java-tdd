@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentDAO {
-    public Optional<Student> persist(Student student) throws StudentDAOException;
+    public Long persist(Student student) throws StudentDAOException;
 
     public Optional<Student> findByStudentId(String studentID) throws StudentDAOException;
 
