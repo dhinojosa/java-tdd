@@ -1,7 +1,8 @@
-package com.xyzcorp.instructor.student.dao;
+package com.xyzcorp.instructor.registration.dao;
 
-import com.xyzcorp.instructor.student.domain.Student;
-import com.xyzcorp.instructor.student.domain.StudentDAOException;
+import com.xyzcorp.instructor.registration.domain.Student;
+import com.xyzcorp.instructor.registration.domain.StudentDAO;
+import com.xyzcorp.instructor.registration.domain.StudentDAOException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings({"SqlResolve", "SqlNoDataSourceInspection"})
 @Tag(value = "integration")
-class StudentMySQLDAORefactorOneIntegrationTest {
+class StudentMySQLDAORefactorTwoIntegrationTest {
 
     @Test
-    @Tag(value = "integration")
     void testPersistStudent() throws StudentDAOException {
         /* Student */
         String firstName = "Cool";
@@ -23,13 +23,13 @@ class StudentMySQLDAORefactorOneIntegrationTest {
         String studentID = "393912";
         Student student = new Student(firstName, lastName, studentID);
 
-        MySQLStudentDAORefactorOne mySQLStudentDAORefactorOne =
-            new MySQLStudentDAORefactorOne("jdbc:tc:mysql:5" +
+        StudentDAO studentDAO =
+            new MySQLStudentDAORefactorTwo("jdbc:tc:mysql:5" +
                 ".7.34:///university?user=root&password=&xTC_INITSCRIPT" +
                 "=init_student_mysql.sql");
 
         Long result =
-            mySQLStudentDAORefactorOne.persist(student);
+            studentDAO.persist(student);
 
         /* Assertions */
         assertThat(result).isGreaterThan(0L);
@@ -38,13 +38,13 @@ class StudentMySQLDAORefactorOneIntegrationTest {
 
     @Test
     void testFindById() throws StudentDAOException {
-        MySQLStudentDAORefactorOne mySQLStudentDAORefactorOne =
-            new MySQLStudentDAORefactorOne("jdbc:tc:mysql:5" +
+        StudentDAO studentDAO =
+            new MySQLStudentDAORefactorTwo("jdbc:tc:mysql:5" +
                 ".7.34:///university?user=root&password=&xTC_INITSCRIPT" +
                 "=init_student_mysql.sql");
 
         Optional<Student> result =
-            mySQLStudentDAORefactorOne.findById(1L);
+            studentDAO.findById(1L);
 
         /* Assertions */
         assertThat(result).isNotEmpty();
@@ -56,13 +56,13 @@ class StudentMySQLDAORefactorOneIntegrationTest {
     @Test
     @Tag(value = "integration")
     void findByLikeFirstName() throws StudentDAOException {
-        MySQLStudentDAORefactorOne mySQLStudentDAORefactorOne =
-            new MySQLStudentDAORefactorOne("jdbc:tc:mysql:5" +
+        StudentDAO studentDAO =
+            new MySQLStudentDAORefactorTwo("jdbc:tc:mysql:5" +
                 ".7.34:///university?user=root&password=&xTC_INITSCRIPT" +
                 "=init_student_mysql.sql");
 
         List<Student> result =
-            mySQLStudentDAORefactorOne.findLikeFirstName("au");
+            studentDAO.findLikeFirstName("au");
 
         /* Assertions */
         assertThat(result).isNotEmpty();
@@ -78,13 +78,13 @@ class StudentMySQLDAORefactorOneIntegrationTest {
     @Test
     @Tag(value = "integration")
     void findByLikeLastName() throws StudentDAOException {
-        MySQLStudentDAORefactorOne mySQLStudentDAORefactorOne =
-            new MySQLStudentDAORefactorOne("jdbc:tc:mysql:5" +
+        StudentDAO studentDAO =
+            new MySQLStudentDAORefactorTwo("jdbc:tc:mysql:5" +
                 ".7.34:///university?user=root&password=&xTC_INITSCRIPT" +
                 "=init_student_mysql.sql");
 
         List<Student> result =
-            mySQLStudentDAORefactorOne.findLikeLastName("Car");
+            studentDAO.findLikeLastName("Car");
 
         /* Assertions */
         assertThat(result).isNotEmpty();

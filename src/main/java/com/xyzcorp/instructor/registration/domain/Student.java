@@ -1,4 +1,4 @@
-package com.xyzcorp.instructor.student.domain;
+package com.xyzcorp.instructor.registration.domain;
 
 import java.util.Objects;
 import java.util.Optional;

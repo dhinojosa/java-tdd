@@ -1,8 +1,8 @@
-package com.xyzcorp.instructor.student.dao;
+package com.xyzcorp.instructor.registration.dao;
 
-import com.xyzcorp.instructor.student.domain.Student;
-import com.xyzcorp.instructor.student.domain.StudentDAO;
-import com.xyzcorp.instructor.student.domain.StudentDAOException;
+import com.xyzcorp.instructor.registration.domain.Student;
+import com.xyzcorp.instructor.registration.domain.StudentDAO;
+import com.xyzcorp.instructor.registration.domain.StudentDAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,8 +43,7 @@ public class MySQLStudentDAORefactorOne implements StudentDAO {
     private Connection getConnection() throws ClassNotFoundException,
         SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(url);
-        return connection;
+        return DriverManager.getConnection(url);
     }
 
     private PreparedStatement prepareInsertStudentStatement(Student student,

@@ -1,6 +1,6 @@
-package com.xyzcorp.instructor.student.dao;
+package com.xyzcorp.instructor.registration.dao;
 
-import com.xyzcorp.instructor.student.domain.Student;
+import com.xyzcorp.instructor.registration.domain.Student;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -66,7 +66,7 @@ class StudentMySQLDAOIntegrationTest {
 
 
     @Test
-    void findByStudentID() throws ClassNotFoundException, SQLException {
+    void findByStudentID() throws SQLException {
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE id " +
@@ -99,7 +99,7 @@ class StudentMySQLDAOIntegrationTest {
 
 
     @Test
-    void findByLikeFirstNameFull() throws SQLException, ClassNotFoundException {
+    void findByLikeFirstNameFull() throws SQLException {
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE " +
@@ -130,7 +130,7 @@ class StudentMySQLDAOIntegrationTest {
     }
 
     @Test
-    void findByLikeLastName() throws SQLException, ClassNotFoundException {
+    void findByLikeLastName() throws SQLException {
         /* Prepare Statement */
         PreparedStatement preparedStatement = connection.prepareStatement(
             "SELECT id, firstName, lastName, studentId FROM STUDENT WHERE " +

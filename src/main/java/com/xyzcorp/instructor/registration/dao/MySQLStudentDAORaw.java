@@ -1,8 +1,8 @@
-package com.xyzcorp.instructor.student.dao;
+package com.xyzcorp.instructor.registration.dao;
 
-import com.xyzcorp.instructor.student.domain.Student;
-import com.xyzcorp.instructor.student.domain.StudentDAO;
-import com.xyzcorp.instructor.student.domain.StudentDAOException;
+import com.xyzcorp.instructor.registration.domain.Student;
+import com.xyzcorp.instructor.registration.domain.StudentDAO;
+import com.xyzcorp.instructor.registration.domain.StudentDAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class MySQLStudentDAORaw implements StudentDAO {
             /* Generate a copy of object with keys */
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 
-            while (generatedKeys.next()) {
+            if (generatedKeys.next()) {
                 return generatedKeys.getLong(1);
             }
             throw new StudentDAOException("Unable to persist");
