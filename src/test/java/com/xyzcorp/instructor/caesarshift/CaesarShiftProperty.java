@@ -10,6 +10,7 @@ public class CaesarShiftProperty {
     @Property
     void verifyThatCaesarShiftWorksForAllAlpha(
         @ForAll @AlphaChars String string, @ForAll int shift) {
+        System.out.printf("string: %s, shift: %d\n", string, shift);
         CaesarShift cs = new CaesarShift(shift);
         assertThat(
             cs.decode(cs.encode(string))).isEqualTo(string);

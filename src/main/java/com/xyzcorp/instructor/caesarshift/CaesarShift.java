@@ -2,8 +2,6 @@ package com.xyzcorp.instructor.caesarshift;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.lang.Character.isAlphabetic;
 import static java.lang.Character.isUpperCase;
@@ -26,17 +24,21 @@ public class CaesarShift {
 
     private String shiftString(String s, int actualShift) {
         Objects.requireNonNull(s, "Original string cannot be null");
-        IntStream chars = s.chars();
-        Stream<Integer> boxed = chars.boxed();
-        Stream<String> stringStream = boxed.map(i ->
-            shiftCharacter((char) i.intValue(), actualShift));
-        return stringStream.collect(Collectors.joining());
+        return s
+            .chars()
+            .boxed()
+            .map(i -> shiftCharAsString(actualShift, i))
+            .collect(Collectors.joining());
     }
 
-    private String shiftCharacter(char c, int actualShift) {
+    private String shiftCharAsString(int actualShift, Integer i) {
+        return String.valueOf(shiftCharacter((char) i.intValue(), actualShift));
+    }
+
+    private char shiftCharacter(char c, int actualShift) {
         char preferredA = isUpperCase(c) ? 'A' : 'a';
-        if (!isAlphabetic(c)) return String.valueOf(c);
-        return String.valueOf((char)
+        if (!isAlphabetic(c)) return c;
+        return ((char)
             ((c - preferredA + actualShift + ALPHA_SIZE) %
                 ALPHA_SIZE + preferredA));
     }
