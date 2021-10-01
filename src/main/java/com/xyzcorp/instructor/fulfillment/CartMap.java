@@ -1,6 +1,5 @@
 package com.xyzcorp.instructor.fulfillment;
 
-import javax.naming.OperationNotSupportedException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

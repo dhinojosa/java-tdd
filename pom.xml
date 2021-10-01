@@ -125,6 +125,13 @@
             <version>1.15.3</version>
             <scope>test</scope>
         </dependency>
+
+        <!--fake data-->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
         <!--ansi-->
         <dependency> <!-- https://github.com/fusesource/jansi -->
             <groupId>org.fusesource.jansi</groupId>

@@ -31,4 +31,8 @@ public class Person {
     public Integer getAge() {
         return (int) YEARS.between(birthday, now.get());
     }
+
+    public String getLastName() {
+        return lastName;
+    }
 }
