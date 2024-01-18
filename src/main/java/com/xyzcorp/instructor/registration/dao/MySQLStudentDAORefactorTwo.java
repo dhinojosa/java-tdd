@@ -50,6 +50,9 @@ public class MySQLStudentDAORefactorTwo implements StudentDAO {
         return resultSetToListStudents(resultSet);
     }
 
+   //ResultSet -> T
+
+
     private Optional<Student> resultSet2OptionalStudent(ResultSet resultSet) throws SQLException {
         Optional<Student> result = Optional.empty();
         while (resultSet.next()) {

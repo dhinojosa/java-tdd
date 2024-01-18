@@ -22,7 +22,7 @@ class StudentMySQLDAOIntegrationTest {
     static void init() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
-            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
+            ".7.37:///university?user=root&password=&TC_INITSCRIPT" +
             "=init_student_mysql.sql");
     }
 
@@ -37,7 +37,7 @@ class StudentMySQLDAOIntegrationTest {
         /* Get connection */
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:tc:mysql:5" +
-            ".7.34:///university?user=root&password=&TC_INITSCRIPT" +
+            ".7.37:///university?user=root&password=&TC_INITSCRIPT" +
             "=init_student_mysql.sql");
 
         /* Prepare Statement */

@@ -14,5 +14,6 @@ public class CaesarShiftProperty {
         CaesarShift cs = new CaesarShift(shift);
         assertThat(
             cs.decode(cs.encode(string))).isEqualTo(string);
+
     }
 }
